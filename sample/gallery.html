@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>sample Portfolio</title>
+		<meta name="keywords" content="キーワード">
+		<meta name="newsContent" content="説明">
+		<meta name="author" content="narikei">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/gallery.css">
+		<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script>
+		var loop = false; /* ループするかの選択 */
+		var num = 0;
+		$(function(){
+			galleryWidth = $('#gallery-innner li').width();
+			// 初期配置
+			var hash = location.hash;
+			num = getNumByID(hash);
+			galleryScroll(num);
+			
+			// gallery-navigationボタンをクリックしたとき
+			$('#gallery-navigation li a').click(function(){
+				num = getNumByID( $(this).attr('href') );
+				num = galleryScroll(num);
+				return false;
+			}),
+			// nextボタンをおしたとき
+			$('#gallery-next').click(function(){
+				num++;
+				num = galleryScroll(num);
+			}),
+			// prevボタンをおしたとき
+			$('#gallery-prev').click(function(){
+				num--;
+				num = galleryScroll(num);
+			});
+		});
+		
+		// スクロール処理
+		galleryScroll = function(num){
+			// gallery
+			if(loop){
+				if(num < 0){
+					num = $('#gallery-innner li').index();
+				}else if(num > $('#gallery-innner li').index()){
+					num = 0;
+				}
+			}else{
+				$('#gallery-prev').fadeIn();
+				$('#gallery-next').fadeIn();
+				if(num <= 0){
+					num = 0;
+					$('#gallery-prev').fadeOut();
+				}else if(num >= $('#gallery-innner li').index()){
+					num = $('#gallery-innner li').index();
+					$('#gallery-next').fadeOut();
+				}
+			}
+			$('#gallery-innner').animate({
+				scrollLeft: num * galleryWidth
+			}, 'slow', 'swing');
+			
+			// navigation
+			navigationWidth = $('#gallery-navigation li').width();
+			$('#gallery-navigation ul li a').css('background', ''); // 値を空にすることで設定値を削除
+			$('#gallery-navigation ul li:nth-child('+ (num + 1) +') a').css('background', '');
+			console.log($('#gallery-navigation').width());
+			$('#gallery-navigation').animate({
+				scrollLeft: num * (navigationWidth + 20) - (($('#gallery-navigation').width() / 2) - ((navigationWidth + 20) / 2))
+			}, 'slow', 'swing');
+			
+			
+			return num;
+		}
+		// 番号を取得
+		getNumByID = function(id){
+			num = id.replace('#gallery-', '');
+			if(parseInt(num) == num){
+				num = parseInt(num) - 1;
+				return num;
+			}else{
+				return 0;
+			}
+		}
+		</script>
+    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+    <script>var __adobewebfontsappname__="dreamweaver"</script>
+    <script src="http://use.edgefonts.net/zeyada:n4:default;sunshiney:n4:default;kranky:n4:default;adamina:n4:default.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+		<header>
+			<h1><a href="">Jellyfish Gallery</a></h1>
+		</header>
+		
+		<article id="contents">
+			<section>				
+				<div id="gallery">
+					<!--
+						ギャラリーを追加
+						
+						#gallery-innnerに
+						<li id="gallery-11">11</li>を追加
+						
+						#gallery-navigationに
+						<li><a href="#gallery-11">11</a></li>を追加
+					-->
+					<div id="gallery-innner">
+						<ul>
+							<li id="gallery-1"><img src="images/kurage1.jpg" width="1000" height="500" alt="landscape1"></li>
+							<li id="gallery-2"><img src="images/kurage2.jpg" width="1000" height="500" alt="landscape2"></li>
+							<li id="gallery-3"><img src="images/kurage3.jpg" width="1000" height="500" alt="landscape3"></li>
+							<li id="gallery-4"><img src="images/kurage4.jpg" width="1000" height="500" alt="landscape4"></li>
+							<li id="gallery-5"><img src="images/kurage5.JPG" width="1000" height="500" alt="landscape5"></li>
+							<li id="gallery-6"><img src="images/kurage6.jpg" width="1000" height="500" alt="landscape6"></li>
+							<li id="gallery-7"><img src="images/kurage7.jpg" width="1000" height="500" alt="landscape7"></li>
+							<li id="gallery-8"><img src="images/kurage8.jpg" width="1000" height="500" alt="landscape8"></li>
+							<li id="gallery-9"><img src="images/kurage9.jpg" width="1000" height="500" alt="landscape9"></li>
+							<li id="gallery-10"><img src="images/kurage10.JPG" width="1000" height="500" alt="landscape10"></li>
+						</ul>
+					</div>
+					
+					<div id="gallery-next">NEXT</div>
+					<div id="gallery-prev">PREV</div>
+				</div>
+				
+				<nav id="gallery-navigation">
+					<ul>
+						<li><a href="#gallery-1"><img src="images/kurage1s.png" width="100" height="100" alt="landscape1"></a></li>
+						<li><a href="#gallery-2"><img src="images/kurage2s.png" width="100" height="100" alt="landscape2"></a></li>
+						<li><a href="#gallery-3"><img src="images/kurage3s.png" width="100" height="100" alt="landscape3"></a></li>
+						<li><a href="#gallery-4"><img src="images/kurage4s.png" width="100" height="100" alt="landscape4"></a></li>
+						<li><a href="#gallery-5"><img src="images/kurage5s.png" width="100" height="100" alt="landscape5"></a></li>
+						<li><a href="#gallery-6"><img src="images/kurage6s.png" width="100" height="100" alt="landscape6"></a></li>
+						<li><a href="#gallery-7"><img src="images/kurage7s.png" width="100" height="100" alt="landscape7"></a></li>
+						<li><a href="#gallery-8"><img src="images/kurage8s.png" width="100" height="100" alt="landscape8"></a></li>
+						<li><a href="#gallery-9"><img src="images/kurage9s.png" width="100" height="100" alt="landscape9"></a></li>
+						<li><a href="#gallery-10"><img src="images/kurage10s.png" width="100" height="100" alt="landscape10"></a></li>
+					</ul>
+				</nav>
+				copylight &copy; 2018 j&eacute;llyfish gallery
+			</section>
+		</article>
+	</body>
+</html>

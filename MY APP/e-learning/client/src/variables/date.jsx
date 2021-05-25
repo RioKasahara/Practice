@@ -1,0 +1,36 @@
+export const getDate =
+[
+    {
+        "contents_id":1,
+        "contents_detail_id":1,
+        "contents_name":"",
+        "contents_statement":"個人情報とは何を指すか。下記の4つの中から選びなさい。1",
+        "choice1":"氏名",
+        "choice2":"電話番号",
+        "choice3":"住所",
+        "choice4":"勤務先",
+        "answer":3,
+    },
+    {
+        "contents_id":1,
+        "contents_detail_id":2,
+        "contents_name":"",
+        "contents_statement":"個人情報とは何を指すか。下記の4つの中から選びなさい。2",
+        "choice1":"氏名",
+        "choice2":"電話番号",
+        "choice3":"住所",
+        "choice4":"勤務先",
+        "answer":3,
+    },
+    {
+        "contents_id":1,
+        "contents_detail_id":3,
+        "contents_name":"",
+        "contents_statement":"個人情報とは何を指すか。下記の4つの中から選びなさい。3",
+        "choice1":"氏名",
+        "choice2":"電話番号",
+        "choice3":"住所",
+        "choice4":"勤務先",
+        "answer":3,
+    }
+];
